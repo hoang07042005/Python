@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Members List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+    <style>
+        .container1 {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+        #image-preview {
+            margin-top: 10vh;
+            height: 50vh; 
+            width: 50vh; 
+            border: 2px solid #ccc; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background-color: #f9f9f9;
+        }
+        #preview-image {
+            max-height: 100%;
+            max-width: 100%;
+            display: none; /* Hidden by default */
+        }
+        #no-image-message {
+            display: block;
+            color: #aaa;
+            text-align: center;
+            font-size: 25px;
+        }
+        #form-container {
+            max-width: 500px;
+        }
+        .flex-inline {
+            display: inline-flex;
+            align-items: center;
+        }
+        .flex-inline label {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+<div>
+    <div class="container1">
+        <div id="form-container">
+            <br /><br />
+            <h1>Add Member</h1>
+            <form action="{% url 'addrec' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <br /><br />
+                <label for="first">First Name</label><br><br>
+                <input type="text" name="first" id="first" style="width: 300px;" required><br><br>
+                
+                <label for="last">Last Name</label><br><br>
+                <input type="text" name="last" id="last" style="width: 300px;" required><br><br>
+                
+                <div class="flex-inline">
+                    <label for="image">Image</label>
+                    <input type="file" name="image" id="image" accept="image/*">
+                </div>
+                <br /><br />
+                <button type="submit" id="new" style=" width: 20vh;">Submit</button>
+            </form>
+        </div>
+        
+        <div id="image-preview">
+            <img id="preview-image" src="" alt="Image Preview">
+            <div id="no-image-message">No Image</div>
+        </div>
+    </div>
+    <div class="container">
+        <table id="customers" border="1">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Image</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th colspan="2" id="mid">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for x in mem %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>
+                        <img src="{{ x.ImageURL }}" alt="{{ x.firstname }} {{ x.lastname }}'s image" style="height: 40px; width: auto; max-width: 25vh; max-height: 100%;"/>
+                    </td>
+                    
+                    <td class="description-cell" style="max-width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ x.firstname }}</td>
+
+                    <td class="description-cell" style="max-width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ x.lastname }}</td>
+    
+                    <td>
+                        <a href="{% url 'update' x.id %}">
+                            <button id="up" title="Update">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{% url 'delete' x.id %}">
+                            <button id="del" title="Delete">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br><br>
+    </div>
+</div>
+<script src="{% static 'js/style.js' %}"></script>
+</body>
+
+</html>

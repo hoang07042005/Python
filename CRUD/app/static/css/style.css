@@ -1,0 +1,100 @@
+.container {
+    margin: 80px 240px 60px 240px;
+    padding: 0px 100px 100px 100px;
+}
+
+#customers {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#customers td,
+#customers th {
+    border: 1px solid rgb(17, 4, 4);
+    padding: 6px;
+}
+
+#customers tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#customers tr:hover {
+    background-color: #ddd;
+}
+
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    /* background-color: #04AA6D; */
+    color: black;
+}
+
+#customers #mid {
+    text-align: center;
+
+}
+
+#customers #up {
+    
+    border-color: white;
+    border-radius: 5px;
+    padding: 8px;
+    color: black;
+}
+
+#customers #del {
+    
+    border-color: white;
+    border-radius: 5px;
+    padding: 8px;
+    color: black;
+}
+
+#customers button {
+    width: 100%;
+}
+
+.container1 #new {
+    
+    
+    border-radius: 5px;
+    padding: 8px;
+    color: black;
+}
+
+.container2 #new1 {
+    
+    border-color:white;
+    border-radius: 5px;
+    padding: 8px;
+    color: black;
+}
+
+
+.container1 input {
+    padding: 8px;
+}
+
+.container2 input {
+    padding: 8px;
+}
+
+.container1 {
+    margin: 80px 240px 60px 240px;
+    padding: 0px 100px 100px 100px;
+}
+
+.container2 {
+    margin: 80px 240px 60px 240px;
+    padding: 0px 100px 100px 100px;
+}
+
+.container #new3 {
+    padding: 8px;
+    
+    color: black;
+    border-radius: 4px;
+    
+}

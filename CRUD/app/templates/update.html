@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Member</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        .container1 {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+        #image-preview {
+            margin-top: 10vh;
+            height: 50vh; 
+            width: 50vh; 
+            border: 2px solid #ccc; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background-color: #f9f9f9;
+        }
+        #preview-image {
+            max-height: 100%;
+            max-width: 100%;
+            display: none; /* Hidden by default */
+        }
+        #no-image-message {
+            display: block;
+            color: #aaa;
+            text-align: center;
+            font-size: 25px;
+        }
+        #form-container {
+            max-width: 500px;
+        }
+        .flex-inline {
+            display: inline-flex;
+            align-items: center;
+        }
+        .flex-inline label {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container1">
+        <div id="form-container">
+            <h1>Edit Member</h1>
+            <form action="{% url 'uprec' mem.id %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <label for="first">First Name</label><br><br>
+                <input type="text" name="first" id="first" value="{{ mem.firstname }}" style="width: 300px;  height: 5vh;" required><br><br>
+                
+                <label for="last">Last Name</label><br><br>
+                <input type="text" name="last" id="last" value="{{ mem.lastname }}" style="width: 300px;  height: 5vh;" required><br><br>
+                
+                <div class="flex-inline">
+                    <label for="image">Image</label>
+                    <input type="file" name="image" id="image" accept="image/*">
+                </div>
+                <br /><br />
+                <button type="submit" id="new1" style=" width: 20vh; height: 4vh;">Update</button>        
+            </form>
+        </div>
+        
+        <div id="image-preview">
+            <img id="preview-image" src="" alt="Image Preview">
+            <div id="no-image-message">No Image</div>
+        </div>
+    </div>
+    <script src="{% static 'js/style.js' %}"></script>
+</body>
+
+</html>
+
+
